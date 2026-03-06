@@ -1,3 +1,7 @@
+# Not yet officially released!
+> The assignments are not yet out. This is a draft. You may start to work on it, but it may change. Probably only small changes.
+
+
 # Assignments
 IDG2001 has two assignments. These will both affect the final grade.
 Assignment 2 builds upon assignment 1.
