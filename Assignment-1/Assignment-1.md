@@ -3,13 +3,13 @@
 ## API description
 The assignment is to build an API and an API user control/administration system.
 
-The API will allow users to retrieve data from a dataset related to the Olympic Games and their athletes. Things like seeing data of specific athletes or countries. It can be found on [here (Kaggle)](https://www.kaggle.com/datasets/andreshg/countries-iso-codes-continent-flags-url).
+The API will allow users to retrieve data from a dataset related to the Olympic Games and their athletes. Things like seeing data of specific athletes or countries. It can be found on [here (Kaggle)](https://www.kaggle.com/datasets/heesoo37/120-years-of-olympic-history-athletes-and-results).
 
 It will have a user control system, where users will have a certain amount of tokens, and they will consume tokens as they use the API endpoints. They will start off with some points, buy will have to "buy" more to continue using the API.
 
 ### API versioning
-All endpoints start with `/v<version number>/...`
-E.g., `/v1/user`
+All endpoints start with `/v<API-version>/...`
+E.g., `/v1/user`.
 Having versioning for the API means we can update our endpoints without making older versions outdated.
 
 ### Users
@@ -50,8 +50,8 @@ It is up to you what kind of data, metadata and structure you return, and how to
 
 ```JSON
 {
-    "<sport-1>": [100, 50, 30, 20],  // 20 bronze, 30 silver, 50 gold, 100 in total
-    "<sport-2>": ...  // for each sport (or each sport where total_medals > 0)
+    "<sport-1>": {"medals": 100, "gold": 50, "silver": 30, "bronze": 20, "na": 80},
+    "<sport-2>": ...  // for each sport (or each sport)
 }
 ```
 
