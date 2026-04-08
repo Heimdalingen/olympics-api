@@ -4,3 +4,4 @@ _Ignore-*
 Ignore-*
 ~$*
 Old-*
+.env
