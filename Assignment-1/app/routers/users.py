@@ -21,7 +21,7 @@ def list_users(db: Session = Depends(get_db)):
     return user_services.get_all_users(db)
     
 
-@router.post("")
+@router.post("", status_code=201)
 def create_user(body: UserCreate, db: Session = Depends(get_db)):
     if user_services.get_user_by_email(db, body.email):
         raise HTTPException(status_code=409, detail="Email already taken")

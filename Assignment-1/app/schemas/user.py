@@ -1,14 +1,16 @@
 """Schemas for user configuration"""
+from typing import Optional
 from pydantic import BaseModel
 
+
 class UserCreate(BaseModel):
-    email: str
-    password: str
+    email: Optional[str]
+    password: Optional[str]
 
 
 class UserUpdate(BaseModel):
-    email: str | None = None
-    password: str | None = None
+    email: Optional[str] 
+    password: Optional[str]
 
 
 class UserOut(BaseModel):

@@ -1,5 +1,6 @@
 """Handels Olympic data query service."""
 from sqlalchemy.orm import Session
+from typing import Optional
 from app.models.olympic import OlympicEvent
 from app.schemas.olympic import OlympicEventCreate
 
@@ -14,7 +15,7 @@ def get_country(db: Session, noc: str):
     return db.query(OlympicEvent).filter(OlympicEvent.noc == noc).all()
 
 
-def get_sport(db: Session, sport: str, country: str | None, year: int | None, medal: str | None):
+def get_sport(db: Session, sport: str, country: Optional[str], year: Optional[int], medal: Optional[str]):
     """Gets the sport"""
     query = db.query(OlympicEvent).filter(OlympicEvent.sport == sport)
     if country:

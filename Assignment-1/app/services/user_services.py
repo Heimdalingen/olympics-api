@@ -1,6 +1,7 @@
 """Managin users"""
 from uuid import uuid4
 from sqlalchemy.orm import Session
+from typing import Optional
 from app.models.user import User 
 from app.utils.auth import hash_password
 
@@ -29,7 +30,7 @@ def create_user(db: Session, email: str, password: str, initial_tokens: int):
     db.refresh(user)
     return user    
 
-def update_user(db: Session, user_id: str, email: str | None, password: str | None):
+def update_user(db: Session, user_id: str, email: Optional[str], password: Optional[str]):
     """Updates the use's email and/or password"""
     user = db.query(User).filter(User.id == user_id).first()
     if not user: 
