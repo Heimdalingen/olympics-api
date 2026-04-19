@@ -2,14 +2,14 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from app.database import get_db
-from app.schemas.user import UserCreate, UserUpdate
+from app.schemas.user import UserCreate, UserUpdate, UserOut
 from app.services import user_services
 from app.config import settings
 
 router = APIRouter(prefix="/v1/user", tags=["users"])
 
 
-@router.get("/{user_id}")
+@router.get("/{user_id}", response_model=UserOut)
 def get_user(user_id: str, db: Session = Depends(get_db)):
     """Return a user by ID."""
     user = user_services.get_user(db, user_id)
@@ -19,13 +19,13 @@ def get_user(user_id: str, db: Session = Depends(get_db)):
     return user
 
 
-@router.get("")
+@router.get("", response_model=list[UserOut])
 def list_users(db: Session = Depends(get_db)):
     """Return all users."""
     return user_services.get_all_users(db)
 
 
-@router.post("", status_code=201)
+@router.post("", status_code=201, response_model=UserOut)
 def create_user(body: UserCreate, db: Session = Depends(get_db)):
     """Create a new user."""
     if user_services.get_user_by_email(db, body.email):
@@ -38,7 +38,7 @@ def create_user(body: UserCreate, db: Session = Depends(get_db)):
     return user
 
 
-@router.put("/{user_id}")
+@router.put("/{user_id}", response_model=UserOut)
 def update_user(user_id: str, body: UserUpdate, db: Session = Depends(get_db)):
     """Update a user's email and/or password."""
     user = user_services.update_user(db, user_id, body.email, body.password)
@@ -47,7 +47,7 @@ def update_user(user_id: str, body: UserUpdate, db: Session = Depends(get_db)):
     return user
 
 
-@router.patch("/{user_id}")
+@router.patch("/{user_id}", response_model=UserOut)
 def patch_user(user_id: str, body: UserUpdate, db: Session = Depends(get_db)):
     """Partially update a user's email and/or password."""
     user = user_services.update_user(db, user_id, body.email, body.password)

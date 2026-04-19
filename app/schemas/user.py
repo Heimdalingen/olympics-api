@@ -6,8 +6,8 @@ from pydantic import BaseModel
 class UserCreate(BaseModel):
     """Schema for creating a new user."""
 
-    email: Optional[str]
-    password: Optional[str]
+    email: str
+    password: str
 
 
 class UserUpdate(BaseModel):

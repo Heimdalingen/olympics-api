@@ -58,3 +58,4 @@ def delete_user(db: Session, user_id: str):
         return None
     db.delete(user)
     db.commit()
+    return True
