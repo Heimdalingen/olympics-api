@@ -7,9 +7,9 @@ from app.database import SessionLocal, engine, Base
 from app.models.olympic import OlympicEvent
 
 def seed():
+    Base.metadata.drop_all(bind=engine)
     Base.metadata.create_all(bind=engine)
     db = SessionLocal()
-    # this opens the CSV, loops through its rows then create OlympicEvent objects
     path = os.path.join(os.path.dirname(__file__), "..", "data", "athlete_events.csv")
 
     with open(path, newline="", encoding="utf-8") as f: 
