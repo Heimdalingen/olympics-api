@@ -26,6 +26,8 @@ def seed():
                 noc=row["NOC"],
                 year=int(row["Year"]),
                 season=row["Season"],
+                city=row["City"],
+                sport=row["Sport"],
                 event=row["Event"],
                 medal=row["Medal"] if row["Medal"] != "NA" else None,
             )
