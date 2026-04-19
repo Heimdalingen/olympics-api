@@ -10,6 +10,7 @@ router = APIRouter(prefix="/v1/athlete", tags=["athletes"])
 
 @router.get("/{athlete_id}")
 def get_athlete(athlete_id: int, user_id: str, db: Session = Depends(get_db)):
+    """Return all Olympic events for a given athlete."""
     consume_token(user_id, db)
     events = query_services.get_athlete(db, athlete_id)
     if not events:

@@ -11,6 +11,7 @@ router = APIRouter(prefix="/v1/user", tags=["users"])
 
 @router.get("/{user_id}")
 def get_user(user_id: str, db: Session = Depends(get_db)):
+    """Return a user by ID."""
     user = user_services.get_user(db, user_id)
     if not user:
         raise HTTPException(status_code=404,
@@ -20,11 +21,13 @@ def get_user(user_id: str, db: Session = Depends(get_db)):
 
 @router.get("")
 def list_users(db: Session = Depends(get_db)):
+    """Return all users."""
     return user_services.get_all_users(db)
 
 
 @router.post("", status_code=201)
 def create_user(body: UserCreate, db: Session = Depends(get_db)):
+    """Create a new user."""
     if user_services.get_user_by_email(db, body.email):
         raise HTTPException(status_code=409,
                             detail="Email already taken")
@@ -37,6 +40,7 @@ def create_user(body: UserCreate, db: Session = Depends(get_db)):
 
 @router.put("/{user_id}")
 def update_user(user_id: str, body: UserUpdate, db: Session = Depends(get_db)):
+    """Update a user's email and/or password."""
     user = user_services.update_user(db, user_id, body.email, body.password)
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
@@ -45,6 +49,7 @@ def update_user(user_id: str, body: UserUpdate, db: Session = Depends(get_db)):
 
 @router.patch("/{user_id}")
 def patch_user(user_id: str, body: UserUpdate, db: Session = Depends(get_db)):
+    """Partially update a user's email and/or password."""
     user = user_services.update_user(db, user_id, body.email, body.password)
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
@@ -53,6 +58,7 @@ def patch_user(user_id: str, body: UserUpdate, db: Session = Depends(get_db)):
 
 @router.delete("/{user_id}", status_code=204)
 def delete_user(user_id: str, db: Session = Depends(get_db)):
+    """Delete a user by ID."""
     result = user_services.delete_user(db, user_id)
     if result is None:
         raise HTTPException(status_code=404, detail="User not found")

@@ -14,6 +14,7 @@ router = APIRouter(prefix="/v1/event", tags=["events"])
 def create_events(body: OlympicEventCreate,
                   user_id: str,
                   db: Session = Depends(get_db)):
+    """Create a new Olympic event record."""
     consume_token(user_id, db)
     event = query_services.create_event(db, body)
     return event

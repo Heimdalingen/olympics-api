@@ -10,6 +10,7 @@ router = APIRouter(prefix="/v1/country", tags=["countries"])
 
 @router.get("/{noc}")
 def get_country(noc: str, user_id: str, db: Session = Depends(get_db)):
+    """Return all Olympic events for a given country NOC code."""
     consume_token(user_id, db)
     events = query_services.get_country(db, noc)
     if not events:

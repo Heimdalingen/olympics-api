@@ -16,6 +16,7 @@ def get_sport(sport: str,
               country: Optional[str] = None,
               year: Optional[int] = None,
               medal: Optional[str] = None):
+    """Return Olympic events for a sport with optional filters."""
     consume_token(user_id, db)
     events = query_services.get_sport(db, sport, country, year, medal)
     if not events:
