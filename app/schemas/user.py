@@ -9,7 +9,7 @@ class UserCreate(BaseModel):
 
 
 class UserUpdate(BaseModel):
-    email: Optional[str] 
+    email: Optional[str]
     password: Optional[str]
 
 
@@ -25,4 +25,3 @@ class UserOut(BaseModel):
 class TokenAdd(BaseModel):
     user_id: str
     amount: int
-    

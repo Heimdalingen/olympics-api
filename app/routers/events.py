@@ -1,3 +1,4 @@
+"""Router for events endpoint."""
 from fastapi import APIRouter, Depends
 from app.schemas.olympic import OlympicEventCreate
 from sqlalchemy.orm import Session
@@ -8,8 +9,11 @@ from app.utils.dependencies import consume_token
 
 router = APIRouter(prefix="/v1/event", tags=["events"])
 
+
 @router.post("")
-def create_events(body: OlympicEventCreate, user_id: str, db: Session = Depends(get_db)):
+def create_events(body: OlympicEventCreate,
+                  user_id: str,
+                  db: Session = Depends(get_db)):
     consume_token(user_id, db)
     event = query_services.create_event(db, body)
     return event

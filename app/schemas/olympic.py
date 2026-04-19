@@ -39,4 +39,3 @@ class OlympicEventCreate(BaseModel):
     age: Optional[int] = None
     weight: Optional[int] = None
     medal: Optional[str] = None
-

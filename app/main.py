@@ -13,6 +13,7 @@ app.include_router(athletes.router)
 
 Base.metadata.create_all(bind=engine)
 
+
 @app.get("/")
 def root():
     """Health check endpoint."""

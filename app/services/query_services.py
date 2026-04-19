@@ -5,9 +5,10 @@ from app.models.olympic import OlympicEvent
 from app.schemas.olympic import OlympicEventCreate
 
 
-def get_athlete(db: Session, atlhete_id: int):
+def get_athlete(db: Session, athlete_id: int):
     """Gets athletes and filters it"""
-    return db.query(OlympicEvent).filter(OlympicEvent.athlete_id == atlhete_id).all()
+    return db.query(OlympicEvent).filter(OlympicEvent.
+                                         athlete_id == athlete_id).all()
 
 
 def get_country(db: Session, noc: str):
@@ -15,7 +16,11 @@ def get_country(db: Session, noc: str):
     return db.query(OlympicEvent).filter(OlympicEvent.noc == noc).all()
 
 
-def get_sport(db: Session, sport: str, country: Optional[str], year: Optional[int], medal: Optional[str]):
+def get_sport(db: Session,
+              sport: str,
+              country: Optional[str],
+              year: Optional[int],
+              medal: Optional[str]):
     """Gets the sport"""
     query = db.query(OlympicEvent).filter(OlympicEvent.sport == sport)
     if country:

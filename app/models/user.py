@@ -1,8 +1,6 @@
-
 """User databae model."""
 from app.database import Base
 from sqlalchemy import Column, String, Integer
-
 
 
 class User(Base):
@@ -11,4 +9,3 @@ class User(Base):
     email = Column(String, unique=True, nullable=False)
     hashed_password = Column(String, nullable=False)
     tokens = Column(Integer, nullable=False, default=0)
-
