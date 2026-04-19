@@ -4,6 +4,7 @@ from sqlalchemy import Column, String, Integer
 
 
 class OlympicEvent(Base):
+    """Database model for an Olympic event record."""
     __tablename__ = "olympic_events"
     id = Column(Integer, primary_key=True, autoincrement=True)
     athlete_id = Column(Integer, nullable=True)

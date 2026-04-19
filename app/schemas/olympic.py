@@ -4,6 +4,7 @@ from pydantic import BaseModel
 
 
 class OlympicEventOut(BaseModel):
+    """Schema for returning an Olympic event."""
     id: int
     athlete_id: Optional[int] = None
     name: Optional[str] = None
@@ -25,6 +26,7 @@ class OlympicEventOut(BaseModel):
 
 
 class OlympicEventCreate(BaseModel):
+    """Schema for creating a new Olympic event."""
     name: str
     sex: str
     team: str

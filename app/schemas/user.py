@@ -4,16 +4,22 @@ from pydantic import BaseModel
 
 
 class UserCreate(BaseModel):
+    """Schema for creating a new user."""
+
     email: Optional[str]
     password: Optional[str]
 
 
 class UserUpdate(BaseModel):
+    """Schema for updating a user's email and/or password."""
+
     email: Optional[str]
     password: Optional[str]
 
 
 class UserOut(BaseModel):
+    """Schema for returning user data."""
+
     id: str
     email: str
     tokens: int
@@ -23,5 +29,7 @@ class UserOut(BaseModel):
 
 
 class TokenAdd(BaseModel):
+    """Schema for adding tokens to a user."""
+
     user_id: str
     amount: int
